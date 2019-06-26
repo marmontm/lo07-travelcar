@@ -6,6 +6,9 @@
 .vscode/
 .atom/
 
+# External ressources
+external_stuff/
+
 # Secret deployment file, please ask me for this one
 docker-compose.yml
 
