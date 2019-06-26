@@ -7,7 +7,7 @@
 
 CREATE TABLE `user` (
   `login` varchar(30) NOT NULL,
-  `role` varchar(20) DEFAULT 'user',
+  `role` varchar(20) DEFAULT 'customer',
   `secret` varchar(255) DEFAULT NULL,
   `email` varchar(50) NOT NULL,
   `surname` varchar(30) DEFAULT NULL,
