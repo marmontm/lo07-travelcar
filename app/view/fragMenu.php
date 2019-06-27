@@ -1,4 +1,7 @@
 <?php
+
+require_once '../model/modelUser.php';
+
 // Vérifier si utilisateur connecté ou pas
 $username = "guest";
 $role = "guest";
@@ -11,6 +14,8 @@ session_start();
 if (isset($_SESSION['signedin']) && $_SESSION['signedin'] === true) {
     $username = $_SESSION['username'];
     $role = $_SESSION['role'];
+    $users = modelUser::read($username);
+    $userLongName = $users[0]->getFirstname()." ".$users[0]->getSurname();
 }
 ?>
 
@@ -108,11 +113,10 @@ if (isset($_SESSION['signedin']) && $_SESSION['signedin'] === true) {
 if ($role == "customer" || $role == "admin") {
     echo ("
         <li class=\"dropdown\">
-            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Mon compte : ".$username." <span class=\"caret\"></span></a>
+            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">".$userLongName." <span class=\"caret\"></span></a>
             <ul class=\"dropdown-menu\">
-                <li><a href=\"../controller/router.php?action=myProfil\">Mes informations</a></li>
+                <li><a href=\"../controller/router.php?action=myProfile\">Mes informations</a></li>
                 <li><a href=\"../controller/router.php?action=myVehicles\">Mes voitures</a></li>
-                <li><a href=\"../controller/router.php?action=myPw\">Changer mon mot de passe</a></li>
                 <li role=\"separator\" class=\"divider\"></li>
                 <li><a href=\"../controller/router.php?action=signout\">Se déconnecter</a></li>
             </ul>

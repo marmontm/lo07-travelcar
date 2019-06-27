@@ -9,14 +9,14 @@
             <?php
             if ($role == "customer" || $role == "admin") {
                 echo ("
-                <a class=\"btn btn-primary btn-lg\" href=\"#\" role=\"button\">Réserver une place de parking</a>
-                <a class=\"btn btn-primary btn-lg\" href=\"#\" role=\"button\">Louer un véhicule</a>
+                <a class=\"btn btn-primary btn-lg\" href=\"../controller/router.php?action=searchParking\" role=\"button\">Réserver une place de parking</a>
+                <a class=\"btn btn-primary btn-lg\" href=\"../controller/router.php?action=searchRental\" role=\"button\">Louer un véhicule</a>
                 ");
             }
             else {
                 echo ("
-                <a class=\"btn btn-primary btn-lg\" href=\"#\" role=\"button\">Se connecter</a>
-                <a class=\"btn btn-primary btn-lg\" href=\"#\" role=\"button\">S'inscrire</a>
+                <a class=\"btn btn-primary btn-lg\" href=\"../controller/router.php?action=signin\" role=\"button\">Se connecter</a>
+                <a class=\"btn btn-primary btn-lg\" href=\"../controller/router.php?action=signup\" role=\"button\">S'inscrire</a>
                 ");
             }
             ?>
@@ -26,14 +26,6 @@
 <!--            <a class="btn btn-primary btn-lg" href="#" role="button">Louer un véhicule</a>-->
         </p>
     </div>
-    <pre>
-        <?php
-
-
-
-        ?>
-    </pre>
-
 </div>
 
 <?php include 'fragFooter.html'; ?>

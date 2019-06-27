@@ -1,5 +1,7 @@
 <?php include 'fragHeader.html'; ?>
 
+
+
 <div class="container">
     <?php include 'fragMenu.php'; ?>
 
@@ -9,6 +11,14 @@
         <div class=\"alert alert-danger alert-dismissible\" role=\"alert\">
         <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>
         <strong>Oops...</strong> Il semblerait que les identifiants fournis soient incorrects. Veuillez recommencer.
+        </div>
+        ");
+    }
+    elseif ($successSignedup) {
+        echo ("
+        <div class=\"alert alert-success alert-dismissible\" role=\"alert\">
+        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>
+        <strong>Parfait !</strong> Votre compte a été créé avec succès.
         </div>
         ");
     }

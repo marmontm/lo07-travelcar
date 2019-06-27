@@ -21,13 +21,19 @@ switch ($action) {
     case "signin":
     case "signinAction":
     case "signout":
+    case "signup":
+    case "signupAction":
+    case "myProfile":
+    case "updateUserInfo":
+    case "adminSites":
+    case "addSite":
+    case "delSite":
         break;
 
     default:
         $action = "home";
 }
 
-
-echo ("Router : nom = $env");
+echo ("Router : env = $env");
 // appel de la méthode statique $action de ControllerVin2
 Controller::$action();

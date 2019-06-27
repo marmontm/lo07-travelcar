@@ -4,12 +4,12 @@ require_once 'SModel.php';
 
 class modelParking
 {
-    private $_id, $site_id, $label, $address, $totalSlots, $priceReservDay;
+    private $id, $site_id, $label, $address, $totalSlots, $priceReservDay;
 
     public function __construct($_id = NULL, $site_id = NULL, $label = NULL, $address = NULL, $totalSlots = NULL, $priceReservDay = NULL)
     {
         if(!is_null($_id)) {
-            $this->_id = $_id;
+            $this->id = $_id;
             $this->site_id = $site_id;
             $this->label = $label;
             $this->address = $address;
@@ -23,7 +23,7 @@ class modelParking
      */
     public function setId($id): void
     {
-        $this->_id = $id;
+        $this->id = $id;
     }
 
     /**
@@ -31,7 +31,7 @@ class modelParking
      */
     public function getId()
     {
-        return $this->_id;
+        return $this->id;
     }
 
     /**

@@ -4,12 +4,12 @@ require_once 'SModel.php';
 
 class modelReservation
 {
-    private $_id, $parking_id, $car_id, $dateStart, $dateEnd;
+    private $id, $parking_id, $car_id, $dateStart, $dateEnd;
 
     public function __construct($_id = NULL, $parking_id = NULL, $car_id = NULL, $dateStart = NULL, $dateEnd = NULL)
     {
         if(!is_null($_id)) {
-            $this->_id = $_id;
+            $this->id = $_id;
             $this->parking_id = $parking_id;
             $this->car_id = $car_id;
             $this->dateStart = $dateStart;
@@ -22,7 +22,7 @@ class modelReservation
      */
     public function setId($id): void
     {
-        $this->_id = $id;
+        $this->id = $id;
     }
 
     /**
@@ -30,7 +30,7 @@ class modelReservation
      */
     public function getId()
     {
-        return $this->_id;
+        return $this->id;
     }
 
     /**

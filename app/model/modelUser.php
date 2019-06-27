@@ -170,7 +170,6 @@ class modelUser
         return $this->login;
     }
 
-    // retourne le vin de l'id fourni
     public static function read($login) {
         try {
             $database = SModel::getInstance();
@@ -184,6 +183,51 @@ class modelUser
         } catch (PDOException $e) {
             printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
             return NULL;
+        }
+    }
+
+    public static function insert($login, $role, $secret, $email, $surname, $firstname, $birthdate, $country, $numDrivingLicence) {
+        try {
+            $database = SModel::getInstance();
+            $query = "insert into user value (:login, :role, :secret, :email, :surname, :firstname, :birthdate, :country, :numDrivingLicence)";
+            $statement = $database->prepare($query);
+            $statement->execute([
+                'login' => $login,
+                'role' => $role,
+                'secret' => $secret,
+                'email' => $email,
+                'surname' => $surname,
+                'firstname' => $firstname,
+                'birthdate' => $birthdate,
+                'country' => $country,
+                'numDrivingLicence' => $numDrivingLicence
+            ]);
+            return TRUE;
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return FALSE;
+        }
+    }
+
+    public static function update($login, $secret, $email, $surname, $firstname, $birthdate, $country, $numDrivingLicence) {
+        try {
+            $database = SModel::getInstance();
+            $query = "update user set secret=:secret, email=:email, surname=:surname, firstname=:firstname, birthdate=:birthdate, country=:country, numDrivingLicence=:numDrivingLicence where login=:login";
+            $statement = $database->prepare($query);
+            $statement->execute([
+                'secret' => $secret,
+                'email' => $email,
+                'surname' => $surname,
+                'firstname' => $firstname,
+                'birthdate' => $birthdate,
+                'country' => $country,
+                'numDrivingLicence' => $numDrivingLicence,
+                'login' => $login
+            ]);
+            return TRUE;
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return FALSE;
         }
     }
 }

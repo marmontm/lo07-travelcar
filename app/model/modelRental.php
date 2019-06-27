@@ -4,12 +4,12 @@ require_once 'SModel.php';
 
 class modelRental
 {
-    private $_id, $reservation_id, $tenant, $dateStart, $dateEnd;
+    private $id, $reservation_id, $tenant, $dateStart, $dateEnd;
 
     public function __construct($_id = NULL, $reservation_id = NULL, $tenant = NULL, $dateStart = NULL, $dateEnd = NULL)
     {
         if (!is_null($_id)) {
-            $this->_id = $_id;
+            $this->id = $_id;
             $this->reservation_id = $reservation_id;
             $this->tenant = $tenant;
             $this->dateStart = $dateStart;
@@ -22,7 +22,7 @@ class modelRental
      */
     public function setId($id): void
     {
-        $this->_id = $id;
+        $this->id = $id;
     }
 
     /**
@@ -30,7 +30,7 @@ class modelRental
      */
     public function getId()
     {
-        return $this->_id;
+        return $this->id;
     }
 
     /**

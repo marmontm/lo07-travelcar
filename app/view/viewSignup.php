@@ -43,7 +43,7 @@
         </div>
         <div class="form-group">
             <input type="hidden" name="action" value="signupAction">
-            <button class="btn btn-primary" type="submit">Se connecter</button>
+            <button class="btn btn-primary" type="submit">S'inscrire</button>
         </div>
         <p>Vous avez déjà un compte ? <a href="../controller/router.php?action=signin">Se connecter maintenant</a>.</p>
     </form>

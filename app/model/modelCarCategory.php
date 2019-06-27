@@ -4,12 +4,12 @@ require_once 'SModel.php';
 
 class modelCarCategory
 {
-    private $_id, $label, $priceRentDay;
+    private $id, $label, $priceRentDay;
 
     public function __construct($_id = NULL, $label = NULL, $priceRentDay = NULL)
     {
         if(!is_null($_id)) {
-            $this->_id = $_id;
+            $this->id = $_id;
             $this->label = $label;
             $this->priceRentDay = $priceRentDay;
         }
@@ -20,7 +20,7 @@ class modelCarCategory
      */
     public function setId($id): void
     {
-        $this->_id = $id;
+        $this->id = $id;
     }
 
     /**
@@ -28,7 +28,7 @@ class modelCarCategory
      */
     public function getId()
     {
-        return $this->_id;
+        return $this->id;
     }
 
     /**
