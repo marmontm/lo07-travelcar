@@ -20,10 +20,6 @@
                 ");
             }
             ?>
-<!--            <a class="btn btn-primary btn-lg" href="#" role="button">Se connecter</a>-->
-<!--            <a class="btn btn-primary btn-lg" href="#" role="button">S'inscrire</a>-->
-<!--            <a class="btn btn-primary btn-lg" href="#" role="button">Réserver une place de parking</a>-->
-<!--            <a class="btn btn-primary btn-lg" href="#" role="button">Louer un véhicule</a>-->
         </p>
     </div>
 </div>

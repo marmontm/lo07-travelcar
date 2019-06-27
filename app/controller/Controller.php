@@ -75,7 +75,6 @@ class Controller
             $failure = true;
             require ('../view/viewSignin.php');
         }
-//        require ('../view/viewSigninDone.php');
     }
 
     public static function signup()

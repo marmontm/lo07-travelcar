@@ -58,14 +58,6 @@ include 'fragHeader.html';
         </div>
     </div>
 
-<!--    <form role="form" method="post" action="../controller/router.php">-->
-<!--        <div class="form-group">-->
-<!--            <input type="hidden" name="id" value="">-->
-<!--            <input type="hidden" name="action" value="delSite">-->
-<!--            <button class="btn btn-danger" type="submit">Supprimer</button>-->
-<!--        </div>-->
-<!--    </form>-->
-
     <div class='panel panel-default'>
         <div class='panel-heading'>Liste des sites</div>
         <div class='panel-body'>
