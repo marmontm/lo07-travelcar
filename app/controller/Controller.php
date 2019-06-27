@@ -53,6 +53,11 @@ class Controller
 
     public static function home()
     {
+        if(self::isAuthentified()) {
+            session_start();
+            $users = modelUser::read($_SESSION['username']);
+            $userShortName = $users[0]->getFirstname();
+        }
         require('../view/viewHome.php');
     }
 
@@ -69,7 +74,13 @@ class Controller
     public static function signinAction()
     {
         if(self::auth()) {
-            self::home();
+            if(isset($_POST['callback']) && !is_null($_POST['callback'])){
+                $callback = $_POST['callback'];
+                self::$callback();
+            }
+            else {
+                self::home();
+            }
         }
         else {
             $failure = true;
@@ -79,33 +90,49 @@ class Controller
 
     public static function signup()
     {
-        require ('../view/viewSignup.php');
+        if (!self::isAuthentified()) {
+            require ('../view/viewSignin.php');
+        }
+        else {
+            require ('../view/viewSignup.php');
+        }
     }
 
     public static function signupAction()
     {
-        if ($_POST['password'] == $_POST['confirm_password']) {
-            $secret = password_hash($_POST['password'], PASSWORD_DEFAULT);
-            $res = modelUser::insert($_POST['username'], 'customer', $secret, $_POST['email'], $_POST['surname'], $_POST['firstname'], $_POST['birthdate'], $_POST['country'], $_POST['numDrivingLicence']);
-            if ($res) {
-                $successSignedup = true;
+        if (!self::isAuthentified()) {
+            require ('../view/viewSignin.php');
+        }
+        else {
+            if ($_POST['password'] == $_POST['confirm_password']) {
+                $secret = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                $res = modelUser::insert($_POST['username'], 'customer', $secret, $_POST['email'], $_POST['surname'], $_POST['firstname'], $_POST['birthdate'], $_POST['country'], $_POST['numDrivingLicence']);
+                if ($res) {
+                    $successSignedup = true;
+                }
+                else {
+                    $failure = true;
+                }
             }
             else {
                 $failure = true;
             }
+            require ('../view/viewSignin.php');
         }
-        else {
-            $failure = true;
-        }
-        require ('../view/viewSignin.php');
     }
 
     public static function myProfile()
     {
-        session_start();
-        $login = $_SESSION['username'];
-        $res = modelUser::read($login);
-        require ('../view/viewUserInfo.php');
+        if(self::isAuthentified()) {
+            session_start();
+            $login = $_SESSION['username'];
+            $res = modelUser::read($login);
+            require ('../view/viewUserInfo.php');
+        }
+        else{
+            $callback = 'myProfile';
+            require ('../view/viewSignin.php');
+        }
     }
 
     public static function updateUserInfo()
@@ -131,33 +158,60 @@ class Controller
 
     public static function adminSites()
     {
-        $results = modelSite::readAll();
-        require ('../view/viewAdminSites.php');
+        if(self::isAuthentified() && self::getCurrentUserRole() == 'admin') {
+            $results = modelSite::readAll();
+            require ('../view/viewAdminSites.php');
+        }
+        elseif (self::isAuthentified()) {
+            self::home();
+        }
+        else{
+            $callback = 'adminSites';
+            require ('../view/viewSignin.php');
+        }
     }
 
     public static function addSite()
     {
-        $res = modelSite::insert($_POST['label'], $_POST['location'], $_POST['area'], $_POST['type']);
-        if ($res) {
-            $success = true;
+        if(self::isAuthentified() && self::getCurrentUserRole() == 'admin') {
+            $res = modelSite::insert($_POST['label'], $_POST['location'], $_POST['area'], $_POST['type']);
+            if ($res) {
+                $success = true;
+            }
+            else {
+                $failure = true;
+            }
+            $results = modelSite::readAll();
+            require ('../view/viewAdminSites.php');
         }
-        else {
-            $failure = true;
+        elseif (self::isAuthentified()) {
+            self::home();
         }
-        $results = modelSite::readAll();
-        require ('../view/viewAdminSites.php');
+        else{
+            $callback = 'addSite';
+            require ('../view/viewSignin.php');
+        }
     }
 
     public static function delSite()
     {
-        $res = modelSite::delete($_POST['id']);
-        if ($res) {
-            $success = true;
+        if(self::isAuthentified() && self::getCurrentUserRole() == 'admin') {
+            $res = modelSite::delete($_POST['id']);
+            if ($res) {
+                $success = true;
+            }
+            else {
+                $failure = true;
+            }
+            $results = modelSite::readAll();
+            require ('../view/viewAdminSites.php');
         }
-        else {
-            $failure = true;
+        elseif (self::isAuthentified()) {
+            self::home();
         }
-        $results = modelSite::readAll();
-        require ('../view/viewAdminSites.php');
+        else{
+            $callback = 'delSite';
+            require ('../view/viewSignin.php');
+        }
     }
 }

@@ -1,4 +1,10 @@
-<?php include 'fragHeader.html'; ?>
+<?php include 'fragHeader.html';
+
+if(is_null($callback)){
+    $callback = 'home';
+}
+
+?>
 
 
 
@@ -37,6 +43,7 @@
         </div>
         <div class="form-group">
             <input type="hidden" name="action" value="signinAction">
+            <input type="hidden" name="callback" value="<?php echo ($callback); ?>">
             <button class="btn btn-primary" type="submit">Se connecter</button>
         </div>
         <p>Vous n'avez pas encore de compte ? <a href="../controller/router.php?action=signup">S'inscrire maintenant</a>.</p>
