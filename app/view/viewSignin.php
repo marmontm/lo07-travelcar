@@ -2,9 +2,21 @@
 
 <div class="container">
     <?php include 'fragMenu.php'; ?>
+
+    <?php
+    if ($failure) {
+        echo ("
+        <div class=\"alert alert-danger alert-dismissible\" role=\"alert\">
+        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>
+        <strong>Oops...</strong> Il semblerait que les identifiants fournis soient incorrects. Veuillez recommencer.
+        </div>
+        ");
+    }
+    ?>
+
     <h2>Connexion</h2>
     <p>Merci de renseigner vos identifiants de connexion.</p>
-    <form role="form" method="get" action="../controller/router.php">
+    <form role="form" method="post" action="../controller/router.php">
         <div class="form-group">
             <label for="username">Nom d'utilisateur</label>
             <input id="username" type="text" name="username" class="form-control" value="" required>

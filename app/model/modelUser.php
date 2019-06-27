@@ -4,12 +4,12 @@ require_once 'SModel.php';
 
 class modelUser
 {
-    private $_login, $role, $secret, $email, $surname, $firstname, $birthdate, $country, $numDrivingLicence;
+    private $login, $role, $secret, $email, $surname, $firstname, $birthdate, $country, $numDrivingLicence;
 
     public function __construct($_login = NULL, $role = NULL, $secret = NULL, $email = NULL, $surname = NULL, $firstname = NULL, $birthdate = NULL, $country = NULL, $numDrivingLicence = NULL)
     {
         if(!is_null($_login)) {
-            $this->_login = $_login;
+            $this->login = $_login;
             $this->role = $role;
             $this->secret = $secret;
             $this->email = $email;
@@ -26,7 +26,7 @@ class modelUser
      */
     public function setLogin($login): void
     {
-        $this->_login = $login;
+        $this->login = $login;
     }
 
     /**
@@ -34,7 +34,7 @@ class modelUser
      */
     public function getLogin()
     {
-        return $this->_login;
+        return $this->login;
     }
 
     /**
@@ -167,6 +167,23 @@ class modelUser
 
     public function __toString()
     {
-        return $this->_login;
+        return $this->login;
+    }
+
+    // retourne le vin de l'id fourni
+    public static function read($login) {
+        try {
+            $database = SModel::getInstance();
+            $query = "select * from user where login = :login";
+            $statement = $database->prepare($query);
+            $statement->execute([
+                'login' => $login
+            ]);
+            $user = $statement->fetchAll(PDO::FETCH_CLASS, "modelUser");
+            return $user;
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
     }
 }

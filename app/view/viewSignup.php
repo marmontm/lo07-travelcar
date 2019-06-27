@@ -4,7 +4,7 @@
     <?php include 'fragMenu.php'; ?>
     <h2>Inscription</h2>
     <p>Merci de remplir toutes les informations suivantes afin de créer vortre compte.</p>
-    <form role="form" method="get" action="../controller/router.php">
+    <form role="form" method="post" action="../controller/router.php">
     <div class="form-group">
             <label for="username">Nom d'utilisateur</label>
             <input id="username" type="text" name="username" class="form-control" value="" required>
