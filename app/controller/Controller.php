@@ -91,10 +91,10 @@ class Controller
     public static function signup()
     {
         if (!self::isAuthentified()) {
-            require ('../view/viewSignin.php');
+            require ('../view/viewSignup.php');
         }
         else {
-            require ('../view/viewSignup.php');
+            self::home();
         }
     }
 
